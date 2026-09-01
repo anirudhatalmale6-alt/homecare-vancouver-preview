@@ -1,0 +1,213 @@
+/* Home Care Vancouver — light stylesheet, no framework, no dependencies. */
+
+:root{
+  --ink:#1E2A22;
+  --forest:#2F4536;
+  --moss:#5C7355;
+  --gold:#A8853F;
+  --cream:#FAF7F0;
+  --sand:#F1EADC;
+  --line:#DDD3C1;
+  --white:#fff;
+  --maxw:1120px;
+  --serif:"Iowan Old Style",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font:17px/1.65 var(--sans);
+}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--forest)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2rem,5vw,3.1rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.5rem,3.4vw,2.15rem)}
+h3{font-size:1.15rem;font-family:var(--sans);font-weight:600;line-height:1.3}
+p{margin:0 0 1em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.eyebrow{
+  font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 14px;display:block;
+}
+
+/* ---------- utility bar ---------- */
+.util{background:var(--forest);color:#E8EDE5;font-size:14px}
+.util .wrap{display:flex;flex-wrap:wrap;gap:6px 26px;align-items:center;padding-top:8px;padding-bottom:8px}
+.util a{color:#fff;text-decoration:none;font-weight:600}
+.util a:hover{text-decoration:underline}
+.util span{opacity:.82}
+.util .spacer{margin-left:auto}
+
+/* ---------- header ---------- */
+.site-head{background:var(--cream);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:40}
+.site-head .wrap{display:flex;align-items:center;gap:18px;padding-top:14px;padding-bottom:14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;flex:0 0 auto}
+.brand img{width:38px}
+.brand b{display:block;font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.05}
+.brand small{display:block;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--moss)}
+.nav{margin-left:auto;display:flex;align-items:center;gap:26px}
+.nav a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink)}
+.nav a:hover{color:var(--gold)}
+.btn{
+  display:inline-block;background:var(--gold);color:#fff !important;text-decoration:none;
+  font-weight:700;font-size:15px;padding:12px 22px;border-radius:2px;border:0;cursor:pointer;
+  font-family:var(--sans);line-height:1.2;
+}
+.btn:hover{background:#95742F}
+.btn-outline{background:transparent;color:var(--forest) !important;border:1.5px solid var(--forest)}
+.btn-outline:hover{background:var(--forest);color:#fff !important}
+.nav-toggle{display:none}
+
+/* ---------- hero ---------- */
+.hero{padding:64px 0 56px;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero p.lede{font-size:1.16rem;color:#3D4B41;max-width:34em}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px;align-items:center}
+.hero-fig{position:relative}
+.hero-fig img{border-radius:2px}
+.hero-fig figcaption{
+  position:absolute;left:-18px;bottom:-18px;background:var(--forest);color:#fff;
+  padding:16px 20px;max-width:60%;font-size:14.5px;line-height:1.45;border-radius:2px;
+}
+.hero-fig figcaption b{display:block;font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:2px}
+
+/* ---------- call strip ---------- */
+.callstrip{background:var(--sand);border-bottom:1px solid var(--line)}
+.callstrip .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:18px 32px;padding-top:26px;padding-bottom:26px}
+.callstrip .big{font-family:var(--serif);font-size:clamp(1.2rem,2.6vw,1.6rem);margin:0}
+.callstrip .tel{
+  font-family:var(--serif);font-size:clamp(1.5rem,3.2vw,2rem);color:var(--forest);
+  text-decoration:none;white-space:nowrap;
+}
+.callstrip .tel:hover{color:var(--gold)}
+.callstrip .spacer{margin-left:auto}
+
+/* ---------- generic section ---------- */
+section{padding:62px 0}
+section.alt{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.section-head{max-width:44em;margin-bottom:38px}
+.section-head p{color:#4A574D}
+
+/* ---------- neighbourhoods ---------- */
+.hoods{columns:4;column-gap:30px;margin:0;padding:0;list-style:none;border-top:1px solid var(--line);padding-top:24px}
+.hoods li{
+  break-inside:avoid;padding:7px 0 7px 18px;position:relative;font-size:15.5px;
+}
+.hoods li:before{content:"";position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--gold);border-radius:50%}
+.note{font-size:14.5px;color:#5A6659;margin-top:26px;border-left:3px solid var(--gold);padding-left:14px}
+
+/* ---------- help grid ---------- */
+.help{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.help article{background:var(--white);border:1px solid var(--line);padding:26px 24px 24px;border-radius:2px}
+section.alt .help article{background:var(--cream)}
+.help h3{margin-bottom:8px}
+.help p{margin:0;font-size:15.5px;color:#4A574D}
+.help .num{font-family:var(--serif);font-size:15px;color:var(--gold);display:block;margin-bottom:10px}
+
+/* ---------- costs ---------- */
+.cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:start}
+.cost-list{list-style:none;margin:0;padding:0}
+.cost-list li{padding:16px 0;border-bottom:1px solid var(--line);display:flex;gap:16px;align-items:baseline}
+.cost-list li b{font-family:var(--serif);font-weight:400;font-size:1.05rem;flex:0 0 auto;color:var(--forest)}
+.cost-list li span{font-size:15.5px;color:#4A574D}
+
+/* ---------- hospital ---------- */
+.hosp{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 0;padding:0;list-style:none}
+.hosp li{background:var(--white);border:1px solid var(--line);padding:10px 16px;font-size:15px;border-radius:2px}
+section.alt .hosp li{background:var(--cream)}
+
+/* ---------- faq ---------- */
+.faq{max-width:46em}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:16.5px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:before{content:"+";color:var(--gold);font-weight:700;margin-right:12px}
+.faq details[open] summary:before{content:"–"}
+.faq details p{margin:12px 0 0 26px;color:#4A574D;font-size:15.5px}
+
+/* ---------- contact ---------- */
+.contact{background:var(--forest);color:#EFF2EC}
+.contact h2{color:#fff}
+.contact a{color:#F0D9A8}
+.contact .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:52px;align-items:start}
+.contact .lede{color:#D3DBCE;font-size:1.05rem}
+.contact .direct{margin-top:26px;border-top:1px solid rgba(255,255,255,.22);padding-top:22px}
+.contact .direct a.tel{
+  font-family:var(--serif);font-size:1.85rem;color:#fff;text-decoration:none;display:inline-block;margin-bottom:4px;
+}
+.contact .direct a.tel:hover{color:#F0D9A8}
+form{background:var(--cream);color:var(--ink);padding:30px 28px;border-radius:2px}
+.field{margin-bottom:16px}
+.field label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+.field input,.field select,.field textarea{
+  width:100%;padding:12px 13px;border:1px solid var(--line);background:#fff;
+  font:16px/1.4 var(--sans);color:var(--ink);border-radius:2px;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--gold);outline-offset:-1px;border-color:var(--gold)}
+.field textarea{min-height:110px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.formnote{font-size:13px;color:#5A6659;margin:14px 0 0}
+.formmsg{margin:0 0 16px;padding:13px 15px;font-size:15px;border-radius:2px;display:none}
+.formmsg.ok{display:block;background:#E4EBE0;border:1px solid var(--moss);color:#2F4536}
+.formmsg.err{display:block;background:#F7E8E4;border:1px solid #B3543F;color:#8A3B2A}
+
+/* ---------- footer ---------- */
+.site-foot{background:#16211A;color:#B6C2B4;font-size:14.5px;padding:44px 0 30px}
+.site-foot a{color:#DCE4D8}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.14)}
+.foot-grid h4{font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#8FA08C;margin:0 0 14px}
+.foot-grid ul{list-style:none;margin:0;padding:0}
+.foot-grid li{margin-bottom:8px}
+.foot-brand{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.foot-brand img{width:34px;filter:invert(1) brightness(1.6)}
+.foot-brand b{font-family:var(--serif);font-size:19px;font-weight:400;color:#fff}
+.legal{padding-top:20px;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:13.5px;color:#859383}
+.legal p{margin:0;color:#8FA08C}
+
+/* ---------- sticky mobile call bar ---------- */
+.callbar{display:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:960px){
+  .hero .wrap{grid-template-columns:1fr;gap:34px}
+  .hero-fig figcaption{left:0;bottom:0;max-width:74%}
+  .help{grid-template-columns:1fr 1fr}
+  .hoods{columns:3}
+  .cost-grid,.contact .wrap{grid-template-columns:1fr;gap:34px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .nav{display:none}
+  .nav.open{
+    display:flex;flex-direction:column;align-items:flex-start;gap:14px;
+    position:absolute;top:100%;left:0;right:0;background:var(--cream);
+    border-bottom:1px solid var(--line);padding:20px 22px;
+  }
+  .nav-toggle{
+    display:block;margin-left:auto;background:transparent;border:1.5px solid var(--forest);
+    color:var(--forest);font:700 14px var(--sans);padding:9px 14px;border-radius:2px;cursor:pointer;
+  }
+  .site-head .wrap{position:relative}
+  .help,.hoods{grid-template-columns:1fr;columns:2}
+  .row2{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  section{padding:46px 0}
+  body{padding-bottom:64px}
+  .callbar{
+    display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;
+    box-shadow:0 -2px 14px rgba(0,0,0,.16);
+  }
+  .callbar a{
+    flex:1;text-align:center;padding:17px 8px;text-decoration:none;font-weight:700;font-size:15.5px;
+  }
+  .callbar .c1{background:var(--forest);color:#fff}
+  .callbar .c2{background:var(--gold);color:#fff}
+}
+@media (max-width:430px){ .hoods{columns:1} }
