@@ -1,0 +1,6 @@
+# Private preview for the client. Nothing here may be indexed - these pages
+# are copies of allnursing.ca / homecarevancouver.ca / homecarenursing.ca and
+# indexing them would create exactly the duplicate-content problem this work
+# is meant to remove.
+User-agent: *
+Disallow: /
