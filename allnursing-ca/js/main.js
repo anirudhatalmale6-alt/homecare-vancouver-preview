@@ -21,6 +21,43 @@
      ------------------------------------------------------------------ */
   var FORM_ENDPOINT = "send-mail.php";
 
+  /* --- reCAPTCHA v3 + bot checks -----------------------------------------
+     Off until a site key is set in the page head. With it off the forms still
+     work: the honeypot, the time check, the per-IP limit and the hard-coded
+     recipient in send-mail.php do not depend on it. */
+  var CAPTCHA_KEY = (window.RECAPTCHA_SITE_KEY || "").trim();
+  var PAGE_LOADED = Date.now();
+  var captchaReady = null;
+
+  function loadCaptcha() {
+    if (captchaReady) return captchaReady;
+    captchaReady = new Promise(function (resolve) {
+      if (!CAPTCHA_KEY) return resolve(false);
+      var s = document.createElement("script");
+      s.src = "https://www.google.com/recaptcha/api.js?render=" + encodeURIComponent(CAPTCHA_KEY);
+      s.async = true;
+      s.onload = function () { resolve(true); };
+      s.onerror = function () { resolve(false); };
+      document.head.appendChild(s);
+    });
+    return captchaReady;
+  }
+  if (CAPTCHA_KEY) loadCaptcha();
+
+  function withCaptcha(fd) {
+    return loadCaptcha().then(function (ok) {
+      if (!ok || !window.grecaptcha || !window.grecaptcha.execute) return fd;
+      return new Promise(function (resolve) {
+        window.grecaptcha.ready(function () {
+          window.grecaptcha.execute(CAPTCHA_KEY, { action: "enquiry" })
+            .then(function (t) { fd.append("g-recaptcha-response", t); resolve(fd); })
+            .catch(function () { resolve(fd); });
+        });
+      });
+    });
+  }
+
+
   /* Sticky header shadow on scroll */
   var header = document.querySelector(".site-header");
   var floatingCta = document.querySelector(".floating-cta");
@@ -197,21 +234,25 @@
       }
       e.preventDefault();
 
-      /* All forms submit to Info@allnursing.ca via Formspree.
-         FORM_ENDPOINT must be set to the site's Formspree endpoint
-         (see setup note below) before this goes live. */
+      /* All forms post to send-mail.php on this domain, which delivers to
+         info@allnursing.ca. The recipient is hard-coded in that file and can
+         never be set from the browser. */
       var status = form.querySelector(".form-status");
       var submitBtn = form.querySelector("button[type=submit]");
       var data = new FormData(form);
       if (form.dataset.subject) data.append("_subject", form.dataset.subject);
+      data.append("started", PAGE_LOADED);
 
       if (submitBtn) submitBtn.disabled = true;
 
-      fetch(FORM_ENDPOINT, {
-        method: "POST",
-        body: data,
-        headers: { "Accept": "application/json" }
-      })
+      withCaptcha(data)
+        .then(function (payload) {
+          return fetch(FORM_ENDPOINT, {
+            method: "POST",
+            body: payload,
+            headers: { "Accept": "application/json" }
+          });
+        })
         .then(function (res) {
           if (!res.ok) throw new Error("Request failed");
           if (status) {

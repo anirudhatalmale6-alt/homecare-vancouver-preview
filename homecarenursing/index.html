@@ -41,6 +41,9 @@
   ]
 }
 </script>
+<!-- RECAPTCHA: paste your reCAPTCHA v3 SITE key between the quotes below,
+     and the matching SECRET key into $RECAPTCHA_SECRET in send-mail.php. -->
+<script>window.RECAPTCHA_SITE_KEY = "";</script>
 </head>
 <body>
 
@@ -53,7 +56,7 @@
   </div>
 </div>
 
-<header class="site-head">
+<header class="site-head" id="top">
   <div class="wrap">
     <a class="brand" href="/">
       <img src="images/mark.png" alt="">
@@ -64,6 +67,7 @@
     </a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav">
+      <a href="#top">Home</a>
       <a href="#care">Nursing care</a>
       <a href="#conditions">By condition</a>
       <a href="#who">Who attends</a>

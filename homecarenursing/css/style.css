@@ -16,7 +16,7 @@
 }
 
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:82px;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--white);color:var(--ink);font:17px/1.65 var(--sans)}
 img{max-width:100%;height:auto;display:block}
 a{color:var(--teal-d)}

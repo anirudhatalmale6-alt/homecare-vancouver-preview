@@ -2,6 +2,45 @@
 (function () {
   "use strict";
 
+  /* --- reCAPTCHA v3 -------------------------------------------------------
+     Off until a site key is set in the page head. When it is off the form
+     still works: the honeypot, the time check, the per-IP limit and the
+     hard-coded recipient in send-mail.php are all independent of this. */
+  var CAPTCHA_KEY = (window.RECAPTCHA_SITE_KEY || "").trim();
+  var captchaReady = null;
+
+  function loadCaptcha() {
+    if (captchaReady) return captchaReady;
+    captchaReady = new Promise(function (resolve) {
+      if (!CAPTCHA_KEY) return resolve(false);
+      var s = document.createElement("script");
+      s.src = "https://www.google.com/recaptcha/api.js?render=" + encodeURIComponent(CAPTCHA_KEY);
+      s.async = true;
+      s.onload = function () { resolve(true); };
+      s.onerror = function () { resolve(false); };   // Google blocked/offline: carry on
+      document.head.appendChild(s);
+    });
+    return captchaReady;
+  }
+  if (CAPTCHA_KEY) loadCaptcha();
+
+  function withCaptcha(fd) {
+    return loadCaptcha().then(function (ok) {
+      if (!ok || !window.grecaptcha || !window.grecaptcha.execute) return fd;
+      return new Promise(function (resolve) {
+        window.grecaptcha.ready(function () {
+          window.grecaptcha.execute(CAPTCHA_KEY, { action: "enquiry" })
+            .then(function (t) { fd.append("g-recaptcha-response", t); resolve(fd); })
+            .catch(function () { resolve(fd); });
+        });
+      });
+    });
+  }
+
+  /* Stamped at page load; send-mail.php rejects anything posted in under
+     three seconds, which no human can do and every bot does. */
+  var PAGE_LOADED = Date.now();
+
   /* --- mobile menu -------------------------------------------------- */
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("nav");
@@ -52,7 +91,11 @@
     button.disabled = true;
     button.textContent = "Sending…";
 
-    fetch(form.action, { method: "POST", body: new FormData(form) })
+    var fd = new FormData(form);
+    fd.append("started", PAGE_LOADED);
+
+    withCaptcha(fd)
+      .then(function (payload) { return fetch(form.action, { method: "POST", body: payload }); })
       .then(function (r) {
         if (!r.ok) throw new Error("HTTP " + r.status);
         return r.text();

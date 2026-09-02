@@ -42,6 +42,9 @@
 </script>
 <meta content="elderly nursing care Vancouver, senior home care Vancouver, private elder care services Vancouver, 24 hour senior care Vancouver, home nursing care services Vancouver, private nursing care Vancouver, in home nursing Vancouver BC, skilled nursing care Vancouver, home health care Vancouver" name="keywords"/>
 <meta content="https://allnursing.ca/images/image19.png" property="og:image"/>
+<!-- RECAPTCHA: paste your reCAPTCHA v3 SITE key between the quotes below,
+     and the matching SECRET key into $RECAPTCHA_SECRET in send-mail.php. -->
+<script>window.RECAPTCHA_SITE_KEY = "";</script>
 </head>
 <body>
 <div class="topbar">
@@ -60,6 +63,7 @@
 </a>
 <nav aria-label="Primary" class="main-nav">
 <ul>
+<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
 <li class="nav-item has-mega">
 <a class="nav-link" href="services.html">Services <span class="nav-caret"></span></a>
 <div class="mega">
@@ -192,6 +196,7 @@
 </div>
 <!-- GENERAL CONTACT -->
 <form class="care-form is-active" data-subject="New General Inquiry — allnursing.ca" data-validate="" id="form-general" novalidate="">
+<div class="hp" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
 <div class="field-row">
 <div class="field">
 <label for="g-name">Full name *</label>
@@ -220,6 +225,7 @@
 </form>
 <!-- FREE CONSULTATION -->
 <form class="care-form" data-subject="New Free Consultation Request — allnursing.ca" data-validate="" id="form-consult" novalidate="">
+<div class="hp" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
 <div class="field-row">
 <div class="field">
 <label for="c-name">Your name *</label>
@@ -259,6 +265,7 @@
 </form>
 <!-- HOME CARE INQUIRY -->
 <form class="care-form" data-subject="New Service Inquiry — allnursing.ca" data-validate="" id="form-inquiry" novalidate="">
+<div class="hp" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
 <div class="field-row">
 <div class="field">
 <label for="i-name">Your name *</label>
@@ -300,6 +307,7 @@
 </form>
 <!-- RN ASSESSMENT -->
 <form class="care-form" data-subject="New Free Assessment Request — allnursing.ca" data-validate="" id="form-assessment" novalidate="">
+<div class="hp" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
 <p class="field-hint" style="margin:-8px 0 4px;">A Registered Nurse will visit at home to assess needs — completely free, with no obligation.</p>
 <div class="field-row">
 <div class="field">
@@ -315,7 +323,7 @@
 </div>
 <div class="field">
 <label for="a-recipient">Name of the person who needs care *</label>
-<input id="a-recipient" name="recipient" required="" type="text"/>
+<input id="a-recipient" name="care_for" required="" type="text"/>
 <span class="field-error-msg">Please enter a name.</span>
 </div>
 <div class="field">

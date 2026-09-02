@@ -15,7 +15,7 @@
 }
 
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:82px;-webkit-text-size-adjust:100%}
 body{
   margin:0;
   background:var(--cream);
@@ -70,11 +70,20 @@ p{margin:0 0 1em}
 .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px;align-items:center}
 .hero-fig{position:relative}
 .hero-fig img{border-radius:2px}
+/* A slim band across the FOOT of the photo, full width.
+   It used to be a tall 60%-wide block floated over the middle of the picture,
+   which on a phone landed straight across the faces. Two rules keep it short:
+   the heading sits INLINE with the sentence instead of on its own line, and the
+   band is capped so a longer sentence scrolls inside it rather than growing
+   upwards over the photo again. */
 .hero-fig figcaption{
-  position:absolute;left:-18px;bottom:-18px;background:var(--forest);color:#fff;
-  padding:16px 20px;max-width:60%;font-size:14.5px;line-height:1.45;border-radius:2px;
+  position:absolute;left:0;right:0;bottom:0;background:var(--forest);color:#fff;
+  padding:10px 16px;font-size:14px;line-height:1.4;border-radius:0 0 2px 2px;
+  max-height:38%;overflow:auto;
 }
-.hero-fig figcaption b{display:block;font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:2px}
+.hero-fig figcaption b{
+  display:inline;font-family:var(--serif);font-size:18px;font-weight:400;margin:0 7px 0 0;
+}
 
 /* ---------- call strip ---------- */
 .callstrip{background:var(--sand);border-bottom:1px solid var(--line)}
@@ -215,7 +224,7 @@ form{background:var(--cream);color:var(--ink);padding:30px 28px;border-radius:2p
 /* ---------- responsive ---------- */
 @media (max-width:960px){
   .hero .wrap{grid-template-columns:1fr;gap:34px}
-  .hero-fig figcaption{left:0;bottom:0;max-width:74%}
+  .hero-fig figcaption{font-size:13.5px}
   .help{grid-template-columns:1fr 1fr}
   .hoods{columns:3}
   .split{grid-template-columns:1fr;gap:34px}

@@ -938,6 +938,10 @@ h3 { font-size: clamp(1.25rem, 1.8vw, 1.5rem); }
 
 @media (max-width: 860px) {
   .contact-grid { grid-template-columns: 1fr; }
+  /* On a phone the two columns stack, which used to bury the form below the
+     whole contact card and the service-area card. The form is the point of the
+     page, so it goes first and the details follow it. */
+  .contact-grid > .form-card { order: -1; }
   .field-row { grid-template-columns: 1fr; }
   .form-card { padding: 28px 22px; }
 }
@@ -1239,3 +1243,7 @@ html{scroll-behavior:smooth}
     scroll-behavior:auto!important;
   }
 }
+
+/* Honeypot: a field only a bot can see. Must stay reachable to the DOM (so a
+   bot fills it) but invisible and unfocusable for a real visitor. */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
