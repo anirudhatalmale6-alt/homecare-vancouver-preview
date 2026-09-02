@@ -103,7 +103,7 @@ section.tint2{background:var(--tint2);border-top:1px solid var(--line);border-bo
 /* ---------- pictures ---------- */
 figure{margin:0}
 .wide{margin:0 0 34px}
-.wide img{width:100%;max-height:340px;object-fit:cover;border-radius:6px}
+.wide img{width:100%;max-height:340px;object-fit:cover;object-position:50% 32%;border-radius:6px}
 .wide figcaption{font-size:14.5px;color:#5A6B72;padding-top:10px;font-style:italic}
 .tint2 .wide figcaption{color:#4E626A}
 

@@ -113,7 +113,7 @@ section.alt{background:var(--white);border-top:1px solid var(--line);border-bott
 /* ---------- pictures ---------- */
 figure{margin:0}
 .wide{margin:0 0 38px}
-.wide img{width:100%;max-height:360px;object-fit:cover;border-radius:2px}
+.wide img{width:100%;max-height:360px;object-fit:cover;object-position:50% 32%;border-radius:2px}
 .wide figcaption,.side figcaption{
   font-size:14.5px;color:#5A6659;padding-top:10px;font-style:italic;
 }
