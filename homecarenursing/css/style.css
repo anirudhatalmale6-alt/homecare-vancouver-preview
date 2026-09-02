@@ -45,8 +45,8 @@ p{margin:0 0 1em}
 .brand img{width:36px;filter:invert(1) brightness(1.9) contrast(.85)}
 .brand b{display:block;font-size:19px;font-weight:700;line-height:1.1;letter-spacing:-.01em}
 .brand small{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8FB6C2;margin-top:2px}
-.nav{margin-left:auto;display:flex;align-items:center;gap:24px}
-.nav a{color:#DCEAEE;text-decoration:none;font-weight:600;font-size:15px}
+.nav{margin-left:auto;display:flex;align-items:center;gap:24px;flex-wrap:nowrap}
+.nav a{color:#DCEAEE;text-decoration:none;font-weight:600;font-size:15px;white-space:nowrap}
 .nav a:hover{color:#fff}
 .btn{
   display:inline-block;background:var(--teal);color:#fff !important;text-decoration:none;
@@ -197,4 +197,16 @@ form{background:var(--white);color:var(--ink);padding:28px 26px;border-radius:6p
   .callbar a{flex:1;text-align:center;padding:17px 8px;text-decoration:none;font-weight:700;font-size:15.5px}
   .callbar .c1{background:var(--navy);color:#fff}
   .callbar .c2{background:var(--teal);color:#fff}
+}
+
+/* The menu labels must never split across two lines ("Where we\nwork").
+   nowrap fixes that, but nowrap also means the row can no longer shrink by
+   wrapping, so on mid-width laptops the spacing is tightened instead. */
+@media (min-width:701px) and (max-width:1080px){
+  .nav{gap:16px}
+  .nav a{font-size:14px}
+}
+@media (min-width:701px) and (max-width:880px){
+  .nav{gap:11px}
+  .nav a{font-size:13px}
 }

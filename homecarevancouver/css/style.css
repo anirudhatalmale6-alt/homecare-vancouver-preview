@@ -50,8 +50,8 @@ p{margin:0 0 1em}
 .brand img{width:38px}
 .brand b{display:block;font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.05}
 .brand small{display:block;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--moss)}
-.nav{margin-left:auto;display:flex;align-items:center;gap:26px}
-.nav a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink)}
+.nav{margin-left:auto;display:flex;align-items:center;gap:26px;flex-wrap:nowrap}
+.nav a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink);white-space:nowrap}
 .nav a:hover{color:var(--gold)}
 .btn{
   display:inline-block;background:var(--gold);color:#fff !important;text-decoration:none;
@@ -238,17 +238,6 @@ form{background:var(--cream);color:var(--ink);padding:30px 28px;border-radius:2p
      button off the right edge of a narrow phone */
   .brand{flex:1 1 auto;min-width:0}
   .brand small{display:none}
-  .nav{display:none}
-  .nav.open{
-    display:flex;flex-direction:column;align-items:flex-start;gap:14px;
-    position:absolute;top:100%;left:0;right:0;background:var(--cream);
-    border-bottom:1px solid var(--line);padding:20px 22px;
-  }
-  .nav-toggle{
-    display:block;margin-left:auto;background:transparent;border:1.5px solid var(--forest);
-    color:var(--forest);font:700 14px var(--sans);padding:9px 14px;border-radius:2px;cursor:pointer;
-  }
-  .site-head .wrap{position:relative}
   .help,.hoods{grid-template-columns:1fr;columns:2}
   .cities{grid-template-columns:1fr}
   .row2{grid-template-columns:1fr}
@@ -266,3 +255,28 @@ form{background:var(--cream);color:var(--ink);padding:30px 28px;border-radius:2p
   .callbar .c2{background:var(--gold);color:#fff}
 }
 @media (max-width:430px){ .hoods{columns:1} }
+
+/* The menu labels must never break in half ("Where we / work"), so .nav a is
+   white-space:nowrap. The consequence is that this row can no longer shrink
+   itself by wrapping, and these five labels plus the button simply do not fit
+   a narrow laptop. So the row is tightened first, and below the width where
+   even the tight version overflows, the Menu button takes over. That
+   changeover is at 1080px here rather than the usual 700 - driven by how wide
+   this particular set of labels actually is, measured, not guessed. */
+@media (min-width:1081px) and (max-width:1260px){
+  .nav{gap:15px}
+  .nav a{font-size:14px}
+}
+@media (max-width:1080px){
+  .nav{display:none}
+  .nav.open{
+    display:flex;flex-direction:column;align-items:flex-start;gap:14px;
+    position:absolute;top:100%;left:0;right:0;background:var(--cream);
+    border-bottom:1px solid var(--line);padding:20px 22px;
+  }
+  .nav-toggle{
+    display:block;margin-left:auto;background:transparent;border:1.5px solid var(--forest);
+    color:var(--forest);font:700 14px var(--sans);padding:9px 14px;border-radius:2px;cursor:pointer;
+  }
+  .site-head .wrap{position:relative}
+}
