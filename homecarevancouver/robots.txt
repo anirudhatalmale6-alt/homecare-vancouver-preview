@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /send-mail.php
+
+Sitemap: https://www.homecarevancouver.ca/sitemap.xml

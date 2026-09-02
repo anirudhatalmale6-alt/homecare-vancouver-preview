@@ -990,6 +990,9 @@ h3 { font-size: clamp(1.25rem, 1.8vw, 1.5rem); }
   gap: 48px;
   align-items: start;
 }
+/* Posts that carry no table of contents must not be squeezed into the narrow
+   sidebar column — without this they render in a ~250px strip. */
+.article-layout > .article-body:first-child { grid-column: 1 / -1; }
 .article-toc {
   position: sticky;
   top: 100px;
@@ -1017,6 +1020,14 @@ h3 { font-size: clamp(1.25rem, 1.8vw, 1.5rem); }
 .article-meta .author { display: flex; align-items: center; gap: 10px; color: var(--ink-soft); font-weight: 500; }
 .article-meta .avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--sage-tint); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 0.9rem; color: var(--sage-dark); }
 
+.article-hero { margin: 0 0 30px; }
+.article-hero img {
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
 .article-body h2 { margin: 40px 0 16px; font-size: 1.5rem; }
 .article-body h3 { margin: 28px 0 12px; font-size: 1.2rem; }
 .article-body p { color: var(--ink-soft); margin: 0 0 18px; max-width: 68ch; }

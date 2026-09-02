@@ -101,6 +101,45 @@ section.alt{background:var(--white);border-top:1px solid var(--line);border-bott
 .hoods li:before{content:"";position:absolute;left:0;top:15px;width:7px;height:7px;background:var(--gold);border-radius:50%}
 .note{font-size:14.5px;color:#5A6659;margin-top:26px;border-left:3px solid var(--gold);padding-left:14px}
 
+/* ---------- pictures ---------- */
+figure{margin:0}
+.wide{margin:0 0 38px}
+.wide img{width:100%;max-height:360px;object-fit:cover;border-radius:2px}
+.wide figcaption,.side figcaption{
+  font-size:14.5px;color:#5A6659;padding-top:10px;font-style:italic;
+}
+.split{display:grid;grid-template-columns:1.35fr 1fr;gap:36px;align-items:start}
+.side img{width:100%;border-radius:2px}
+
+/* ---------- the region / city lists ---------- */
+.regions{display:block}
+.region + .region{margin-top:44px}
+.region h3{
+  font-family:var(--serif);font-weight:400;font-size:1.45rem;color:var(--forest);
+  margin:0 0 8px;padding-bottom:10px;border-bottom:2px solid var(--gold);
+}
+.region-note{font-size:14.5px;color:#4A574D;margin:0 0 18px;max-width:46em}
+.cities{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0 34px;
+}
+.cities li{padding:13px 0;border-bottom:1px solid var(--line)}
+.cities b{
+  display:block;font-family:var(--serif);font-weight:400;font-size:1.1rem;
+  color:var(--forest);margin-bottom:3px;
+}
+.cities span{display:block;font-size:15px;color:#4A574D;line-height:1.55}
+.hoodwrap{
+  margin-top:34px;border:1px solid var(--line);background:var(--white);
+  border-radius:2px;padding:0 20px;
+}
+section.alt .hoodwrap{background:var(--cream)}
+.hoodwrap summary{
+  cursor:pointer;font-weight:600;font-size:15.5px;padding:16px 0;color:var(--forest);
+}
+.hoodwrap[open] summary{border-bottom:1px solid var(--line)}
+.hoodwrap .hoods{border-top:0;padding-top:20px;padding-bottom:8px}
+
 /* ---------- help grid ---------- */
 .help{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .help article{background:var(--white);border:1px solid var(--line);padding:26px 24px 24px;border-radius:2px}
@@ -179,11 +218,17 @@ form{background:var(--cream);color:var(--ink);padding:30px 28px;border-radius:2p
   .hero-fig figcaption{left:0;bottom:0;max-width:74%}
   .help{grid-template-columns:1fr 1fr}
   .hoods{columns:3}
+  .split{grid-template-columns:1fr;gap:34px}
+  .cities{grid-template-columns:1fr 1fr}
   .cost-grid,.contact .wrap{grid-template-columns:1fr;gap:34px}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:700px){
   body{font-size:16.5px}
+  /* the brand block must be allowed to shrink, or it pushes the Menu
+     button off the right edge of a narrow phone */
+  .brand{flex:1 1 auto;min-width:0}
+  .brand small{display:none}
   .nav{display:none}
   .nav.open{
     display:flex;flex-direction:column;align-items:flex-start;gap:14px;
@@ -196,6 +241,7 @@ form{background:var(--cream);color:var(--ink);padding:30px 28px;border-radius:2p
   }
   .site-head .wrap{position:relative}
   .help,.hoods{grid-template-columns:1fr;columns:2}
+  .cities{grid-template-columns:1fr}
   .row2{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
   section{padding:46px 0}

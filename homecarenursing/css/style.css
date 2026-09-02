@@ -100,6 +100,13 @@ section.tint2{background:var(--tint2);border-top:1px solid var(--line);border-bo
 .split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 .split img{border-radius:6px}
 
+/* ---------- pictures ---------- */
+figure{margin:0}
+.wide{margin:0 0 34px}
+.wide img{width:100%;max-height:340px;object-fit:cover;border-radius:6px}
+.wide figcaption{font-size:14.5px;color:#5A6B72;padding-top:10px;font-style:italic}
+.tint2 .wide figcaption{color:#4E626A}
+
 /* ---------- who ---------- */
 .who{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
 .who article{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:24px 22px}
