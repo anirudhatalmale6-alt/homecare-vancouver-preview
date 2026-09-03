@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Four fixes — 3 September</title>
+<style>
+:root{--ink:#1f2421;--grey:#5f6863;--line:#dfe1de;--gold:#A8853F;--green:#2F4536}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:780px;margin:0 auto;padding:26px 18px 70px}
+h1{font-size:1.5rem;margin:0 0 6px;line-height:1.25}
+.sub{color:var(--grey);margin:0 0 30px;font-size:.95rem}
+h2{font-size:1.08rem;margin:36px 0 8px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+p{margin:0 0 12px}
+.small{font-size:.9rem;color:var(--grey)}
+.pair{display:flex;gap:16px;margin:18px 0 6px;align-items:flex-start}
+.pair figure{flex:1 1 0;min-width:0;margin:0}
+.pair img{width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block}
+figcaption{font-size:.8rem;color:var(--grey);margin-top:7px;text-align:center}
+.tag{display:inline-block;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--gold);font-weight:700;margin-bottom:4px}
+.note{background:#f7f8f7;border-left:3px solid var(--green);padding:13px 15px;
+  border-radius:0 7px 7px 0;font-size:.92rem;margin:18px 0}
+@media (max-width:520px){.pair{flex-direction:column}}
+@media (prefers-color-scheme:dark){
+  body{background:#141614;color:#e4e6e3}
+  h2{border-bottom-color:#2c2f2c}.sub,.small,figcaption{color:#a3a9a4}
+  .pair img{border-color:#33372f}.note{background:#1c1e1c}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>The four things you flagged</h1>
+<p class="sub">All four are live now. 3 September.</p>
+
+<h2>1. The Services and Locations menus</h2>
+<p>You were right, and it was a real fault rather than your mouse. The panel was
+positioned fourteen pixels below the tab, and those fourteen pixels were dead
+ground — the moment the pointer left the word "Services" on its way down, the
+site decided you had left the menu and closed it. You could never reach the
+links.</p>
+<p>The gap is now bridged, and the menu also waits a moment before closing, so
+moving diagonally towards a link in the far corner works too. I tested it by
+walking the pointer down one pixel at a time and clicking the furthest link in
+both menus, on the live site.</p>
+
+<h2>2. The blog tab</h2>
+<p>It was there — it was just called <b>Resources</b>. That is what the tab has
+always said, so it is no wonder you went looking for a blog and did not find
+one. It now says <b>Blog</b>, on all 57 pages.</p>
+
+<h2>3. The funding section on a phone</h2>
+<p>This one was a genuine break. The heading and its explanation were set to sit
+side by side, and the heading was not allowed to shrink — so
+"Extended health and insurance" took three quarters of the screen and left the
+explanation a column one word wide, with the rest running off the right edge of
+the phone. Measured on a 360px phone: the explanation had 4% of the width, and
+the page scrolled sideways by 54 pixels.</p>
+<div class="pair">
+  <figure>
+    <span class="tag">Before</span>
+    <img src="shots/before-phone.jpg" alt="The funding list before the fix, one word per line">
+    <figcaption>Your own screenshot</figcaption>
+  </figure>
+  <figure>
+    <span class="tag">After</span>
+    <img src="shots/after-phone.jpg" alt="The funding list after the fix, full width">
+    <figcaption>The live site now</figcaption>
+  </figure>
+</div>
+<p class="small">On a phone the two now stack, so the text gets the full width.
+Checked at 360, 390 and 430 pixels wide: no sideways scroll, nothing past the
+right edge.</p>
+
+<h2>4. The font</h2>
+<p>You circled the phone number and wrote "font not good", and you had underlined
+three headings before that. Here is what was actually happening. The headings
+were set in a font called Iowan Old Style, which only exists on Apple machines.
+On your Windows laptop and on your phone it was falling back to <b>Georgia</b> —
+and Georgia draws numbers in the old printer's style, where the 0 sits at the
+height of a small letter and the 3 and the 9 hang below the line. So
+"604 488 9323" came out looking uneven and slightly wrong, which is exactly what
+you circled. On the most important line on the site.</p>
+<p>The headings and the phone numbers now use the same clean face as the rest of
+the text, one weight heavier so a heading still reads as a heading. Numbers are
+locked to full height everywhere.</p>
+<div class="note">
+  <b>This one is a matter of taste and it is your call.</b> If you preferred the
+  old serif look, say the word and I will put it back within the hour — with the
+  number problem fixed, which was the part that was genuinely broken. It is one
+  line in the stylesheet either way.
+</div>
+
+<p class="small" style="margin-top:34px">Nothing else on the sites was touched.
+The wording is all still yours to rewrite.</p>
+
+</div>
+</body>
+</html>
