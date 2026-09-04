@@ -12,20 +12,32 @@
 </FilesMatch>
 RedirectMatch 404 ^/private(/.*)?$
 
-# Canonical host: send everything to www, but KEEP THE VISITOR'S SCHEME.
-# https is deliberately NOT forced here yet. homecarenursing.ca has no TLS
-# certificate of its own - it is currently served *.allnursing.ca, which does
-# not cover this name - so forcing https would put a full-page browser security
-# warning in front of every visitor. Once AutoSSL has issued a certificate for
-# homecarenursing.ca and www.homecarenursing.ca, replace the two blocks below
-# with a plain force-to-https rule.
+# Canonical host: force https and www, so Google is given one address only.
+#
+# https IS forced from 4 Sep 2026. AutoSSL issued a Let's Encrypt certificate
+# covering homecarenursing.ca and *.homecarenursing.ca on 3 Sep 2026, valid to
+# 2 Dec 2026. That was verified against the live server - subject, SAN list and
+# a clean verification result - BEFORE this rule was switched on, because the
+# first version of this file forced https onto a name the certificate did not
+# cover and put a full-page security warning in front of every visitor.
+#
+# If the certificate ever lapses, put these four lines back and the site keeps
+# working over plain http instead of breaking:
+#   RewriteCond %{HTTP_HOST} !^www\. [NC]
+#   RewriteCond %{HTTPS} =on
+#   RewriteRule ^(.*)$ https://www.homecarenursing.ca/$1 [R=301,L]
+#   RewriteCond %{HTTP_HOST} !^www\. [NC]
+#   RewriteCond %{HTTPS} !=on
+#   RewriteRule ^(.*)$ http://www.homecarenursing.ca/$1 [R=301,L]
 RewriteEngine On
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteCond %{HTTPS} =on
+# Leave the ACME challenge path on plain http. Let's Encrypt fetches it over
+# http when the certificate comes up for renewal every 90 days, and a renewal
+# that cannot read this path fails silently until the certificate expires.
+RewriteCond %{REQUEST_URI} !^/\.well-known/ [NC]
+RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://www.homecarenursing.ca/$1 [R=301,L]
 RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteCond %{HTTPS} !=on
-RewriteRule ^(.*)$ http://www.homecarenursing.ca/$1 [R=301,L]
+RewriteRule ^(.*)$ https://www.homecarenursing.ca/$1 [R=301,L]
 
 # Light caching for static assets.
 <IfModule mod_expires.c>

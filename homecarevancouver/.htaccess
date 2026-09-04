@@ -13,7 +13,28 @@
 RedirectMatch 404 ^/private(/.*)?$
 
 # Canonical host: force https and www, so Google is given one address only.
+#
+# Restored 4 Sep 2026, after a few hours off. On 3 Sep this domain was serving a
+# SELF-SIGNED certificate - subject and issuer both
+# "homecarevancouver.ca.allnursing.ca" - and this rule was walking every visitor
+# straight into a full-page browser security warning. https was unforced until a
+# real certificate was back, then checked and turned on again: Let's Encrypt,
+# covering homecarevancouver.ca and *.homecarevancouver.ca, verified against the
+# live server before this went back.
+#
+# If it ever happens again, the emergency version that keeps the site reachable
+# over plain http is:
+#   RewriteCond %{HTTP_HOST} !^www\. [NC]
+#   RewriteCond %{HTTPS} =on
+#   RewriteRule ^(.*)$ https://www.homecarevancouver.ca/$1 [R=301,L]
+#   RewriteCond %{HTTP_HOST} !^www\. [NC]
+#   RewriteCond %{HTTPS} !=on
+#   RewriteRule ^(.*)$ http://www.homecarevancouver.ca/$1 [R=301,L]
 RewriteEngine On
+# Leave the ACME challenge path on plain http. Let's Encrypt reads it over http
+# at renewal time, and a renewal that cannot reach it fails quietly until the
+# certificate expires.
+RewriteCond %{REQUEST_URI} !^/\.well-known/ [NC]
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://www.homecarevancouver.ca/$1 [R=301,L]
 RewriteCond %{HTTP_HOST} !^www\. [NC]

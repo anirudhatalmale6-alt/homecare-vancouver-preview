@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Six headline fonts — pick a letter</title>
+<style>
+/* The four downloadable faces are served from this page, so what you see here
+   is exactly what the site would look like. The two system options need no
+   download at all - your own computer already has them. */
+@font-face{font-family:"Lora";src:url("fonts/lora-600.woff2") format("woff2");
+  font-weight:600;font-display:swap}
+@font-face{font-family:"SourceSerif4";src:url("fonts/sourceserif-600.woff2") format("woff2");
+  font-weight:600;font-display:swap}
+@font-face{font-family:"LibreBaskerville";src:url("fonts/baskerville-700.woff2") format("woff2");
+  font-weight:700;font-display:swap}
+@font-face{font-family:"Nunito";src:url("fonts/nunito-700.woff2") format("woff2");
+  font-weight:700;font-display:swap}
+
+:root{
+  --ink:#1E2A22;--forest:#2F4536;--moss:#5C7355;--gold:#A8853F;
+  --cream:#FAF7F0;--sand:#F1EADC;--line:#DDD3C1;--white:#fff;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);
+  font:16px/1.6 var(--sans);font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1}
+.wrap{max-width:760px;margin:0 auto;padding:24px 18px 80px}
+h1.pagetitle{font-size:1.4rem;margin:0 0 6px;line-height:1.25}
+.sub{color:var(--moss);margin:0 0 26px;font-size:.95rem}
+.note{background:var(--sand);border-left:3px solid var(--forest);padding:13px 15px;
+  border-radius:0 7px 7px 0;font-size:.93rem;margin:0 0 30px}
+
+.card{background:var(--white);border:1px solid var(--line);border-radius:10px;
+  padding:20px 20px 22px;margin:0 0 20px}
+.card.now{background:var(--sand)}
+.badge{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.letter{font:700 1.1rem/1 var(--sans);color:var(--gold);letter-spacing:.04em}
+.cost{font-size:.78rem;color:var(--moss);text-align:right}
+.name{font-size:.86rem;color:var(--moss)}
+
+/* The specimen. Same sizes and spacing as the real site. */
+.spec h2.big{font-size:clamp(1.7rem,5.2vw,2.5rem);line-height:1.18;
+  letter-spacing:-.021em;margin:0 0 14px;font-weight:600}
+.spec h3.mid{font-size:clamp(1.25rem,3.4vw,1.7rem);line-height:1.18;
+  letter-spacing:-.017em;margin:0 0 12px;font-weight:600}
+.spec p{margin:0 0 14px;color:#3D4B41;font-size:16.5px}
+.tel{font-size:1.45rem;font-weight:600;color:var(--forest);letter-spacing:.005em;
+  display:inline-block;margin-top:2px}
+.telrow{border-top:1px dashed var(--line);padding-top:12px;margin-top:4px}
+.telrow small{display:block;font-size:.76rem;color:var(--moss);margin-bottom:3px}
+
+.f-now  .spec h2.big,.f-now  .spec h3.mid,.f-now  .tel{font-family:var(--sans)}
+.f-geo  .spec h2.big,.f-geo  .spec h3.mid,.f-geo  .tel{font-family:Georgia,"Times New Roman",serif}
+.f-pal  .spec h2.big,.f-pal  .spec h3.mid,.f-pal  .tel{font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,serif}
+.f-lora .spec h2.big,.f-lora .spec h3.mid,.f-lora .tel{font-family:"Lora",Georgia,serif}
+.f-ss4  .spec h2.big,.f-ss4  .spec h3.mid,.f-ss4  .tel{font-family:"SourceSerif4",Georgia,serif}
+.f-lb   .spec h2.big,.f-lb   .spec h3.mid,.f-lb   .tel{font-family:"LibreBaskerville",Georgia,serif}
+.f-lb   .spec h2.big,.f-lb .spec h3.mid,.f-lb .tel{font-weight:700}
+.f-nun  .spec h2.big,.f-nun  .spec h3.mid,.f-nun  .tel{font-family:"Nunito",var(--sans);font-weight:700}
+
+@media (prefers-color-scheme:dark){
+  body{background:#141614;color:#e8e6e1}
+  .card{background:#1c1e1c;border-color:#33372f}
+  .card.now,.note{background:#22251f}
+  .spec p{color:#b9c0b6}.tel{color:#9fc0a4}
+  .badge{border-bottom-color:#33372f}.telrow{border-top-color:#33372f}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1 class="pagetitle">Six headline fonts for homecarevancouver.ca</h1>
+<p class="sub">Your own headline, your own phone number, at the real size. Reply with a letter.</p>
+
+<div class="note">
+Each block below is the actual big heading from your home page, a section
+heading under it, and the phone number - because the numbers are where the last
+font went wrong, and they are worth looking at before you choose. This page is
+showing you real type on your own screen, not pictures of type.
+</div>
+
+<!-- ---------------------------------------------------------------- -->
+<div class="card now f-now">
+  <div class="badge"><span class="letter">What you have now</span>
+    <span class="cost">no download<br><span class="name">your system's own sans</span></span></div>
+  <div class="spec">
+    <h2 class="big">Care at home, in the community you already live in.</h2>
+    <h3 class="mid">How home care is actually funded in British Columbia</h3>
+    <p>We arrange caregivers and nurses for families right across Metro Vancouver.</p>
+    <div class="telrow"><small>Phone number</small><span class="tel">604 488 9323</span></div>
+  </div>
+</div>
+
+<div class="card f-geo">
+  <div class="badge"><span class="letter">A &nbsp;Georgia</span>
+    <span class="cost">no download<br><span class="name">already on every computer</span></span></div>
+  <div class="spec">
+    <h2 class="big">Care at home, in the community you already live in.</h2>
+    <h3 class="mid">How home care is actually funded in British Columbia</h3>
+    <p>We arrange caregivers and nurses for families right across Metro Vancouver.</p>
+    <div class="telrow"><small>Phone number</small><span class="tel">604 488 9323</span></div>
+  </div>
+</div>
+
+<div class="card f-pal">
+  <div class="badge"><span class="letter">B &nbsp;Palatino</span>
+    <span class="cost">no download<br><span class="name">already on Windows and Mac</span></span></div>
+  <div class="spec">
+    <h2 class="big">Care at home, in the community you already live in.</h2>
+    <h3 class="mid">How home care is actually funded in British Columbia</h3>
+    <p>We arrange caregivers and nurses for families right across Metro Vancouver.</p>
+    <div class="telrow"><small>Phone number</small><span class="tel">604 488 9323</span></div>
+  </div>
+</div>
+
+<div class="card f-lora">
+  <div class="badge"><span class="letter">C &nbsp;Lora</span>
+    <span class="cost">13 KB once<br><span class="name">warm, modern serif</span></span></div>
+  <div class="spec">
+    <h2 class="big">Care at home, in the community you already live in.</h2>
+    <h3 class="mid">How home care is actually funded in British Columbia</h3>
+    <p>We arrange caregivers and nurses for families right across Metro Vancouver.</p>
+    <div class="telrow"><small>Phone number</small><span class="tel">604 488 9323</span></div>
+  </div>
+</div>
+
+<div class="card f-ss4">
+  <div class="badge"><span class="letter">D &nbsp;Source Serif</span>
+    <span class="cost">7 KB once<br><span class="name">plain and businesslike</span></span></div>
+  <div class="spec">
+    <h2 class="big">Care at home, in the community you already live in.</h2>
+    <h3 class="mid">How home care is actually funded in British Columbia</h3>
+    <p>We arrange caregivers and nurses for families right across Metro Vancouver.</p>
+    <div class="telrow"><small>Phone number</small><span class="tel">604 488 9323</span></div>
+  </div>
+</div>
+
+<div class="card f-lb">
+  <div class="badge"><span class="letter">E &nbsp;Libre Baskerville</span>
+    <span class="cost">22 KB once<br><span class="name">traditional, formal</span></span></div>
+  <div class="spec">
+    <h2 class="big">Care at home, in the community you already live in.</h2>
+    <h3 class="mid">How home care is actually funded in British Columbia</h3>
+    <p>We arrange caregivers and nurses for families right across Metro Vancouver.</p>
+    <div class="telrow"><small>Phone number</small><span class="tel">604 488 9323</span></div>
+  </div>
+</div>
+
+<div class="card f-nun">
+  <div class="badge"><span class="letter">F &nbsp;Nunito</span>
+    <span class="cost">11 KB once<br><span class="name">soft, friendly, not a serif</span></span></div>
+  <div class="spec">
+    <h2 class="big">Care at home, in the community you already live in.</h2>
+    <h3 class="mid">How home care is actually funded in British Columbia</h3>
+    <p>We arrange caregivers and nurses for families right across Metro Vancouver.</p>
+    <div class="telrow"><small>Phone number</small><span class="tel">604 488 9323</span></div>
+  </div>
+</div>
+
+<div class="note" style="margin-top:6px">
+Reply with a letter and it is on the site in ten minutes. A few things worth
+knowing before you pick:
+<br><br>
+A and B cost nothing at all - your visitor's computer already has those fonts.
+C to F have to be downloaded once, and the sizes above are the whole cost. Even
+the biggest is smaller than one of the photos on the page, so none of them will
+make the site feel slow.
+<br><br>
+Every one of them is shown here with the numbers set properly, on the line and
+at full height. That was the actual fault you circled last time - it was not
+Georgia's fault as such, it was that Georgia was being asked to draw numbers in
+its old-fashioned style. That is now locked off whichever face you choose.
+<br><br>
+I would put your choice on the big heading and the section headings together, so
+the page reads as one thing. Say if you only want it on the big one.
+</div>
+
+</div>
+</body>
+</html>
