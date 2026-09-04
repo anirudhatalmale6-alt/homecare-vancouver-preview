@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Headings on one line — 4 September</title>
+<style>
+:root{--ink:#1f2421;--grey:#5f6863;--line:#dfe1de;--gold:#A8853F;--green:#2F4536;--red:#8d3a2e}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding:26px 18px 70px}
+h1{font-size:1.5rem;margin:0 0 6px;line-height:1.25}
+.sub{color:var(--grey);margin:0 0 30px;font-size:.95rem}
+h2{font-size:1.08rem;margin:36px 0 8px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+p{margin:0 0 12px}
+.small{font-size:.9rem;color:var(--grey)}
+figure{margin:16px 0 6px}
+figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block}
+figcaption{font-size:.82rem;color:var(--grey);margin-top:7px}
+.tag{display:inline-block;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;
+  font-weight:700;margin-bottom:5px}
+.tag.b{color:var(--red)} .tag.a{color:var(--green)}
+.note{background:#f7f8f7;border-left:3px solid var(--green);padding:13px 15px;
+  border-radius:0 7px 7px 0;font-size:.93rem;margin:18px 0}
+.note.warn{border-left-color:var(--red)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:14px 0}
+td,th{border-bottom:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--grey)}
+code{background:#f2f3f2;padding:1px 5px;border-radius:4px;font-size:.88em}
+@media (prefers-color-scheme:dark){
+  body{background:#141614;color:#e4e6e3}
+  h2{border-bottom-color:#2c2f2c}.sub,.small,figcaption,th{color:#a3a9a4}
+  figure img{border-color:#33372f}.note{background:#1c1e1c}
+  td,th{border-bottom-color:#2c2f2c}code{background:#232522}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Headings on one line — and the text that went missing</h1>
+<p class="sub">4 September.</p>
+
+<h2>1. The headings breaking onto two lines</h2>
+<p>You were pointing at a real fault, and it was the same one all three times.
+The red arrows on "How home care is actually funded in British Columbia", on
+"Across Metro Vancouver, community by community" and on "Getting home safely,
+from any hospital in the region" were all caused by one line in the
+stylesheet.</p>
+<p>The block holding each heading was capped at about 748 pixels wide, inside a
+column that is 1076 pixels wide. So a heading that needed 790 pixels had 330
+pixels of empty space sitting to the right of it and still broke onto a second
+line, leaving one word — "Columbia" — stranded on its own.</p>
+<p>That cap belongs on the <b>paragraph</b> under the heading, not on the
+heading. A paragraph needs a limited width or it becomes hard to read across.
+A heading does not. It has been moved.</p>
+
+<figure>
+  <span class="tag b">Before</span>
+  <img src="shots/shots-desktop-before.jpg" alt="The funding heading breaking after British, with Columbia alone on a second line">
+  <figcaption>"Columbia" alone on the second line, with the whole right-hand side of the page empty.</figcaption>
+</figure>
+<figure>
+  <span class="tag a">After — live now</span>
+  <img src="shots/shots-desktop-after.jpg" alt="The same heading on a single line">
+  <figcaption>One line. Photographed on the live site, not on my machine.</figcaption>
+</figure>
+
+<p class="small">All five section headings now sit on one line at every desktop
+width from 1081 pixels up. I also checked it with the heading type scaled up by
+a quarter, because the font on your Windows machine is wider than the one on
+mine and I did not want to hand you a fix that only works here. Still one line.
+Phone and tablet layouts are unchanged — no sideways scroll at 360, 390, 412 or
+430 pixels.</p>
+<p class="small">I made the same change on homecarenursing.ca. Nothing there is
+breaking today, but its headings only had about 15% of room to spare, and you
+are going to rewrite the wording — one longer heading and it would have started
+doing the same thing.</p>
+
+<h2>2. Your text and grammar changes</h2>
+<p class="note warn"><b>This one is my fault and I am sorry.</b> On 3 September at
+12:19pm Vancouver time I uploaded 61 files straight over the live site — the 57
+allnursing.ca pages, the stylesheet and homecarevancouver.ca's home page. I did
+not check whether anything on the server had changed since I last touched it. If
+you saved edits before that upload, my upload wrote over them.</p>
+
+<p>Here is what I can actually prove, rather than guess:</p>
+<table>
+<tr><th>When</th><th>What the server shows</th></tr>
+<tr><td>2 Sep, 8:58pm</td><td>I took a full copy of the live site. Every page matches my own files word for word — so no edits of yours existed yet at that point.</td></tr>
+<tr><td>3 Sep, 12:19–12:21pm</td><td>My upload. 61 files rewritten.</td></tr>
+<tr><td>Since then</td><td><b>Nothing on the server has been written at all.</b> Not one file has a later date on it.</td></tr>
+</table>
+
+<p>So there are only two possibilities, and they need different fixes:</p>
+<p><b>If you saved your changes between about 9pm on 2 September and 12:19pm on
+3 September</b> — my upload destroyed them. Nothing I hold has them either; my
+own backup was taken before you started.</p>
+<p><b>If you saved them after 12:19pm on 3 September</b> — they never reached the
+live site in the first place, and nothing of mine touched them. That would mean
+the editor was saving somewhere other than the folder the site is served from,
+which is worth finding, because it will keep happening.</p>
+
+<div class="note">
+<b>Two things that would help me sort this out.</b><br>
+1. Roughly when did you save them, and which pages?<br>
+2. When you edit, what are you clicking — cPanel's File Manager, or something
+else? If it is File Manager, the exact folder path shown at the top of the screen
+tells me straight away which of the two it is.
+</div>
+
+<p><b>HostPapa keeps its own daily backups</b>, separate from anything I have. In
+cPanel there is a Backup or JetBackup section with a file restore. If it lists a
+snapshot from 3 September, your edited pages will be in it.
+Please <b>download</b> the files rather than pressing a full restore — a full
+restore would roll the whole site back and undo the menu, blog-tab and layout
+fixes along with it. Send me the files and I will merge your wording in properly.</p>
+
+<p>Honestly, the fastest route is probably neither: tell me the wording and I
+will put it in. Text and grammar changes take me minutes.</p>
+
+<h2>3. So it cannot happen again</h2>
+<p>My upload script no longer sends anything blind. It now downloads the live
+copy of each file first, compares it against mine, and if there is a single
+change it does not recognise it <b>stops and refuses to upload</b>, saving your
+version to one side instead. I tested that by planting a fake edit of yours in a
+file — it refused, and it refused to upload the other file in the batch too
+rather than doing half the job.</p>
+
+<p class="small" style="margin-top:34px">Nothing else was changed. The wording is
+still yours to rewrite.</p>
+
+</div>
+</body>
+</html>

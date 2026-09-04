@@ -129,11 +129,22 @@
         if (!wasOpen) item.classList.add("open");
       }
     });
+    /* A short grace period on the way out. The CSS bridge already covers the
+       gap under the tab, but a pointer travelling diagonally towards a link in
+       the far corner can still clip the edge of the panel for a frame, and
+       closing instantly on that is what made the menu feel unusable. */
+    var closeTimer = null;
     item.addEventListener("mouseenter", function () {
-      if (window.innerWidth > 860) item.classList.add("open");
+      if (window.innerWidth > 860) {
+        clearTimeout(closeTimer);
+        item.classList.add("open");
+      }
     });
     item.addEventListener("mouseleave", function () {
-      if (window.innerWidth > 860) item.classList.remove("open");
+      if (window.innerWidth > 860) {
+        clearTimeout(closeTimer);
+        closeTimer = setTimeout(function () { item.classList.remove("open"); }, 260);
+      }
     });
   });
 

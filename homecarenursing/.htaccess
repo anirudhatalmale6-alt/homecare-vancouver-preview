@@ -12,12 +12,20 @@
 </FilesMatch>
 RedirectMatch 404 ^/private(/.*)?$
 
-# Canonical host: force https and www, so Google is given one address only.
+# Canonical host: send everything to www, but KEEP THE VISITOR'S SCHEME.
+# https is deliberately NOT forced here yet. homecarenursing.ca has no TLS
+# certificate of its own - it is currently served *.allnursing.ca, which does
+# not cover this name - so forcing https would put a full-page browser security
+# warning in front of every visitor. Once AutoSSL has issued a certificate for
+# homecarenursing.ca and www.homecarenursing.ca, replace the two blocks below
+# with a plain force-to-https rule.
 RewriteEngine On
-RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteCond %{HTTPS} =on
 RewriteRule ^(.*)$ https://www.homecarenursing.ca/$1 [R=301,L]
 RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteRule ^(.*)$ https://www.homecarenursing.ca/$1 [R=301,L]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ http://www.homecarenursing.ca/$1 [R=301,L]
 
 # Light caching for static assets.
 <IfModule mod_expires.c>

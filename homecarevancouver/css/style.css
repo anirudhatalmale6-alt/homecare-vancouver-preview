@@ -10,10 +10,18 @@
   --line:#DDD3C1;
   --white:#fff;
   --maxw:1120px;
-  --serif:"Iowan Old Style",Georgia,"Times New Roman",serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  /* Display face. This used to be "Iowan Old Style",Georgia,"Times New Roman".
+     Iowan only exists on Apple machines, so on Windows and Android it landed on
+     GEORGIA - and Georgia sets numbers as old-style figures, which draws the 0
+     in "604 488 9323" at x-height with the 3 and 9 hanging below the line. The
+     client circled exactly that. Now the same clean face as the body text, one
+     weight heavier so headings still read as headings.
+     To go back to the serif, put the old stack back on this one line. */
+  --serif:var(--sans);
 }
-
+/* Lining figures everywhere, so a phone number is never set in old-style
+   digits again whichever face is in use. */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:82px;-webkit-text-size-adjust:100%}
 body{
@@ -21,12 +29,25 @@ body{
   background:var(--cream);
   color:var(--ink);
   font:17px/1.65 var(--sans);
+  /* Must come AFTER the font shorthand above - `font:` resets every font
+     sub-property, including this one, so declaring it earlier in the file
+     computed back to normal. Keeps numbers on the baseline at full height
+     whichever face is set, so a phone number can never come out in old-style
+     figures again. */
+  font-variant-numeric:lining-nums;
+  font-feature-settings:"lnum" 1;
 }
 img{max-width:100%;height:auto;display:block}
 a{color:var(--forest)}
-h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.15;margin:0 0 .5em}
-h1{font-size:clamp(2rem,5vw,3.1rem);letter-spacing:-.01em}
-h2{font-size:clamp(1.5rem,3.4vw,2.15rem)}
+/* A serif carries at weight 400; a sans at the same weight reads as body copy,
+   so the display sizes get 600 and a touch of negative tracking. */
+/* balance = when a heading genuinely is too long for one line, split it evenly
+   instead of leaving one word stranded on a line of its own. Ignored by older
+   browsers, which just wrap the ordinary way. */
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.18;margin:0 0 .5em;
+  text-wrap:balance}
+h1{font-size:clamp(1.95rem,4.8vw,2.95rem);letter-spacing:-.021em}
+h2{font-size:clamp(1.45rem,3.2vw,2rem);letter-spacing:-.017em}
 h3{font-size:1.15rem;font-family:var(--sans);font-weight:600;line-height:1.3}
 p{margin:0 0 1em}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
@@ -99,8 +120,14 @@ p{margin:0 0 1em}
 /* ---------- generic section ---------- */
 section{padding:62px 0}
 section.alt{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.section-head{max-width:44em;margin-bottom:38px}
-.section-head p{color:#4A574D}
+/* The 44em cap used to sit on this whole block, so it squeezed the HEADING as
+   well as the paragraph: 748px of a 1076px column, which is what broke
+   "...funded in British" / "Columbia" and "Across Metro Vancouver, community by"
+   / "community" onto two lines on a desktop screen.
+   A paragraph wants a measure of about 44em to stay readable. A heading does
+   not - it wants the column. So the cap moved onto the paragraph only. */
+.section-head{margin-bottom:38px}
+.section-head > p{max-width:44em;color:#4A574D}
 
 /* ---------- neighbourhoods ---------- */
 .hoods{columns:4;column-gap:30px;margin:0;padding:0;list-style:none;border-top:1px solid var(--line);padding-top:24px}
@@ -162,7 +189,10 @@ section.alt .help article{background:var(--cream)}
 .cost-list{list-style:none;margin:0;padding:0}
 .cost-list li{padding:16px 0;border-bottom:1px solid var(--line);display:flex;gap:16px;align-items:baseline}
 .cost-list li b{font-family:var(--serif);font-weight:400;font-size:1.05rem;flex:0 0 auto;color:var(--forest)}
-.cost-list li span{font-size:15.5px;color:#4A574D}
+/* min-width:0 is load-bearing. A flex child defaults to min-width:auto, so a
+   long unbreakable word like "WorkSafeBC" cannot shrink and pushes the whole
+   row - and with it the page - wider than the screen. */
+.cost-list li span{font-size:15.5px;color:#4A574D;min-width:0}
 
 /* ---------- hospital ---------- */
 .hosp{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 0;padding:0;list-style:none}
@@ -215,6 +245,17 @@ form{background:var(--cream);color:var(--ink);padding:30px 28px;border-radius:2p
 .foot-brand{display:flex;gap:12px;align-items:center;margin-bottom:14px}
 .foot-brand img{width:34px;filter:invert(1) brightness(1.6)}
 .foot-brand b{font-family:var(--serif);font-size:19px;font-weight:400;color:#fff}
+
+/* ---------- display-face weights ----------
+   Every rule above sets font-weight:400 because it was written for a serif.
+   Rather than edit each one, correct them in a single place; this whole block
+   comes out if the serif is ever put back on the --serif line. */
+.brand b,.hero-fig figcaption b,.callstrip .big,.callstrip .tel,.region h3,
+.cities b,.help .num,.cost-list li b,.contact .direct a.tel,.foot-brand b{
+  font-weight:600;letter-spacing:-.012em;
+}
+.callstrip .tel,.contact .direct a.tel{letter-spacing:.005em}
+.help .num{font-weight:700;letter-spacing:.02em}
 .legal{padding-top:20px;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:13.5px;color:#859383}
 .legal p{margin:0;color:#8FA08C}
 
@@ -240,6 +281,12 @@ form{background:var(--cream);color:var(--ink);padding:30px 28px;border-radius:2p
   .brand small{display:none}
   .help,.hoods{grid-template-columns:1fr;columns:2}
   .cities{grid-template-columns:1fr}
+  /* On a phone the term and its explanation cannot sit side by side. The term
+     was flex:0 0 auto, so "Extended health and insurance" took three quarters
+     of the width and left the explanation a column one word wide, running off
+     the right edge. Stack them. */
+  .cost-list li{flex-direction:column;gap:5px;align-items:stretch}
+  .cost-list li b{flex:none}
   .row2{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
   section{padding:46px 0}

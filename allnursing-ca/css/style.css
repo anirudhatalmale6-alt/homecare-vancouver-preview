@@ -261,6 +261,18 @@ h3 { font-size: clamp(1.25rem, 1.8vw, 1.5rem); }
   }
 }
 .nav-item.open .mega { display: grid; opacity: 1; transform: translateX(-50%) translateY(0); }
+/* The panel sits 14px below the tab, and that 14px was dead ground: the moment
+   the pointer left the tab heading downwards, mouseleave fired on .nav-item and
+   the panel closed before the pointer ever reached a link. This bridges the gap
+   so the pointer stays inside .nav-item the whole way down.
+   Absolutely positioned, so it is not laid out as a cell of the grid. */
+.mega::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: -16px;
+  height: 16px;
+}
 .mega a {
   padding: 10px 12px;
   border-radius: var(--radius-sm);

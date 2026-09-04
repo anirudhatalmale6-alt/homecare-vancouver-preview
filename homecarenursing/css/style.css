@@ -20,7 +20,10 @@ html{scroll-behavior:smooth;scroll-padding-top:82px;-webkit-text-size-adjust:100
 body{margin:0;background:var(--white);color:var(--ink);font:17px/1.65 var(--sans)}
 img{max-width:100%;height:auto;display:block}
 a{color:var(--teal-d)}
-h1,h2,h3,h4{font-weight:700;line-height:1.18;margin:0 0 .5em;letter-spacing:-.015em}
+/* balance: if a heading really is too long for one line, split it evenly rather
+   than stranding one word on a line by itself. */
+h1,h2,h3,h4{font-weight:700;line-height:1.18;margin:0 0 .5em;letter-spacing:-.015em;
+  text-wrap:balance}
 h1{font-size:clamp(1.95rem,4.6vw,2.85rem)}
 h2{font-size:clamp(1.45rem,3.2vw,2rem)}
 h3{font-size:1.12rem;letter-spacing:0}
@@ -78,8 +81,12 @@ p{margin:0 0 1em}
 section{padding:60px 0}
 section.tint{background:var(--tint)}
 section.tint2{background:var(--tint2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.section-head{max-width:44em;margin-bottom:36px}
-.section-head p{color:var(--muted)}
+/* Same change as on homecarevancouver.ca: the 44em cap belongs on the
+   paragraph, which needs a readable measure, not on the heading, which just
+   needs the column. Nothing here orphans a word today, but the headings only
+   have about 15% of slack and the wording is going to be rewritten. */
+.section-head{margin-bottom:36px}
+.section-head > p{max-width:44em;color:var(--muted)}
 
 /* ---------- clinical list ---------- */
 .clin{display:grid;grid-template-columns:repeat(2,1fr);gap:0 46px}
